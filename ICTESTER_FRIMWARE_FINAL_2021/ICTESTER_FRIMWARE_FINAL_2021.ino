@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal.h>
+//aminediani.com
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 int test_result = 0;
@@ -91,7 +92,6 @@ void loop(){
       }
     
       if(mtext=='t'){
-        //lcd.write("---------------");
          delay(150);
         if(Serial.read()=='s'){
           //lcd.clear();
@@ -118,12 +118,11 @@ void loop(){
   start_stop_stat = digitalRead(start_stop_b);
   if (start_stop_stat == 1)
   {
-   // time_hor_s = millis();
+
     test_result = 0;
     //LED REST CONFIG
     digitalWrite(GREEN_LED, LOW);
     digitalWrite(RED_LED, LOW);
-
 
     //LCD REST CONFIG
     lcd.setCursor(0, 1);
@@ -187,12 +186,12 @@ void loop(){
       lcd.print("   TEST FAIL !!  ");
     }
     delay(500);//attend button
-  } //fin START STOP EVENT
-  //step mode button action
+  } //fin "START STOP" EVENT
+  //"step mode" button action
   step_stat = digitalRead(step_b);
   if (step_stat == HIGH)
   {
-    delay(10);   //attend button
+    delay(10);   //wait button
     lcd.clear(); //affiche step mode dans lcd
     lcd.print("STEP MODE");
     delay(750);
@@ -243,19 +242,7 @@ void loop(){
       }
       double Mesure();
       Tvalue = Mesure();
-	  //************************
 	  delay(100);
-	  /*A0VAL = analogRead(A0);
-	  A1VAL = analogRead(A1);
-	  Serial.println("*");
-		  Serial.print("A0 : ");Serial.print(A0VAL);Serial.print(" voltage :");Serial.println(0.0099*A0VAL+1.1604);
-		  Serial.println(A1VAL);
-		  //Serial.print("A1 range[+0 ,+2]:  ");Serial.println(0.0348*A1VAL-26.7484);
-		  //Serial.print("A1 RANGE[-5 ,+0]:  ");Serial.println(0.035*A1VAL-27);
-		  Serial.print("A1 range[-10 ,-5]: ");Serial.println(0.0336*A1VAL-26.09018);
-		  //Serial.print("A1  V= : ");Serial.println(3*0.000001*A1VAL*A1VAL+0.0306*A1VAL-25.218);
-		  */
-		  //*****************
 	  
       if (Tvalue == 99.99)
       {
